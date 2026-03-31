@@ -175,64 +175,61 @@
     <script>
     const database = {
         peixes: [
-            { name: "Acará Disco", price: "R$ 180,00", img: "PeixesTropicais/Disco.jpg" },
-            { name: "Peixe Anjo", price: "R$ 45,00", img: "PeixesTropicais/Angel.jpg" },
-            { name: "Tetra Foguinho", price: "R$ 8,00", img: "PeixesTropicais/TetraFoguinho.jpg" },
-            { name: "Rodóstomo", price: "R$ 12,00", img: "PeixesTropicais/Tetra.jpg" },
+            // ELITE: Alta Beleza e Alta Popularidade
+            { name: "Acará Disco", price: "R$ 180,00", img: "PeixesTropicais/Disco.jpg", info: "O rei do aquário de água doce, cores vibrantes e comportamento elegante.", params: "pH: 6.0 - 6.8 | Temp: 28°C - 30°C" },
+            { name: "Arwana", price: "R$ 590,00", img: "PeixesTropicais/Arwana.jpg", info: "Peixe predador de grande porte e muito valorizado.", params: "pH: 6.0 - 7.0 | Temp: 26°C - 30°C" },
+            { name: "Peixe Anjo", price: "R$ 45,00", img: "PeixesTropicais/Angel.jpg", info: "Clássico e majestoso, essencial em aquários comunitários grandes.", params: "pH: 6.5 - 7.0 | Temp: 24°C - 28°C" },
 
-            { name: "Telescópio Red Black MTZ", price: "R$ 109,00", img: "PeixesTropicais/TelescopioRedBlack.jpg", info: "Kinguios ornamentais de olhos telescópicos e coloração intensa.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "King White Red", price: "R$ 79,00", img: "PeixesTropicais/Oranda.jpg", info: "Variedade ornamental de kinguio com coloração branca e vermelha.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
+            // ORNAMENTAIS (KINGUIOS): Alta Beleza e Muito Populares
             { name: "Red Cap MTZ", price: "R$ 89,00", img: "PeixesTropicais/RedCap.jpg", info: "Kinguio Oranda famoso pelo 'capuz' vermelho na cabeça.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "Telescópio P", price: "R$ 15,00", img: "PeixesTropicais/TelescopioBlack.jpg", info: "Variedade pequena de kinguio telescópio.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
+            { name: "Telescópio Red Black MTZ", price: "R$ 109,00", img: "PeixesTropicais/TlRed.jpg", info: "Kinguios ornamentais de olhos telescópicos e coloração intensa.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
+            { name: "King White Red", price: "R$ 79,00", img: "PeixesTropicais/Oranda.jpg", info: "Variedade ornamental de kinguio com coloração branca e vermelha.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
             { name: "Telescópio White Red", price: "R$ 59,00", img: "PeixesTropicais/TelescopioWhiteRed.jpg", info: "Kinguio telescópio com coloração branca e vermelha.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "King Red", price: "R$ 65,00", img: "PeixesTropicais/KingRed.jpg", info: "Kinguio ornamental de coloração vermelha intensa.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
+            { name: "Telescópio P", price: "R$ 15,00", img: "PeixesTropicais/TelescopioBlack.jpg", info: "Variedade pequena de kinguio telescópio.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
 
-            { name: "Oscar Bronze VEL", price: "R$ 129,00", img: "PeixesTropicais/OscarBronze.jpg", info: "Ciclídeo grande e territorial, muito inteligente.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Oscar Bumblebee", price: "R$ 129,00", img: "PeixesTropicais/OscarBumblebee.jpg", info: "Variedade de Oscar com padrão amarelo e preto.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+            // CICLÍDEOS GRANDES E INTELIGENTES
             { name: "Oscar Albino", price: "R$ 159,00", img: "PeixesTropicais/OscarAlbino.jpg", info: "Variante albina do Oscar, muito apreciada no aquarismo.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+            { name: "Oscar Bumblebee", price: "R$ 129,00", img: "PeixesTropicais/OscarBumblebee.jpg", info: "Variedade de Oscar com padrão amarelo e preto.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+            { name: "Oscar Bronze VEL", price: "R$ 129,00", img: "PeixesTropicais/OscarBronze.jpg", info: "Ciclídeo grande e territorial, muito inteligente.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
 
-            { name: "Molinésia Prata", price: "R$ 6,00", img: "PeixesTropicais/MolinesiaPrata.jpg", info: "Peixe resistente e ótimo para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" },
-            { name: "Molinésia Tigre", price: "R$ 3,50", img: "PeixesTropicais/MolinesiaTigre.jpg", info: "Variedade de molinésia com padrão rajado.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" },
-
-            { name: "Algae Eater", price: "R$ 32,00", img: "PeixesTropicais/AlgaeEater.jpg", info: "Peixe conhecido por ajudar no controle de algas.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-
-            { name: "Pangassius", price: "R$ 22,00", img: "PeixesTropicais/Pangassius.jpg", info: "Peixe grande e ativo que precisa de aquários espaçosos.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Pangassius Albino", price: "R$ 39,00", img: "PeixesTropicais/PangassiusAlbino.jpg", info: "Variante albina do pangassius.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-
-            { name: "Platy Aurora", price: "R$ 6,00", img: "PeixesTropicais/PlatyAurora.jpg", info: "Peixe pequeno, colorido e ideal para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
-            { name: "Platy Rubi", price: "R$ 6,00", img: "PeixesTropicais/PlatyRubi.jpg", info: "Platy com coloração vermelha intensa.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
-
-            { name: "Venustus", price: "R$ 29,00", img: "PeixesTropicais/Venustus.jpg", info: "Ciclídeo africano com padrão manchado.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
+            // CICLÍDEOS AFRICANOS E EXÓTICOS
             { name: "Labidochromis Yellow", price: "R$ 29,00", img: "PeixesTropicais/LabidochromisYellow.jpg", info: "Mbuna africano amarelo muito popular.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
+            { name: "Venustus", price: "R$ 29,00", img: "PeixesTropicais/Venustus.jpg", info: "Ciclídeo africano com padrão manchado.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
             { name: "Demasoni Pombo", price: "R$ 32,00", img: "PeixesTropicais/Demasoni.jpg", info: "Mbuna pequeno e territorial.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
+            { name: "Ciclídeo Cubano", price: "R$ 0,00", img: "PeixesTropicais/CiclideoCubano.jpg", info: "Ciclídeo robusto de grande porte.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
             { name: "Ciclídeos Variados", price: "R$ 12,00", img: "PeixesTropicais/Ciclideos.jpg", info: "Diversas espécies de ciclídeos ornamentais.", params: "pH: Variável | Temp: 24°C - 28°C" },
 
-            { name: "Barbo Ouro", price: "R$ 5,00", img: "PeixesTropicais/BarboOuro.jpg", info: "Barbo ativo ideal para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Sumatra", price: "R$ 5,00", img: "PeixesTropicais/BarboSumatra.jpg", info: "Peixe muito ativo que vive em cardume.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Red", price: "R$ 7,50", img: "PeixesTropicais/BarboRed.jpg", info: "Barbo de coloração avermelhada.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Panda", price: "R$ 7,50", img: "PeixesTropicais/BarboPanda.jpg", info: "Barbo com padrão contrastante.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Verde", price: "R$ 8,00", img: "PeixesTropicais/BarboVerde.jpg", info: "Variante verde metálica do barbo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Cereja", price: "R$ 6,50", img: "PeixesTropicais/BarboCereja.jpg", info: "Peixe pequeno e pacífico de coloração vermelha.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            // CARDUMES COLORIDOS E EXÓTICOS
+            { name: "Tetra Foguinho", price: "R$ 8,00", img: "PeixesTropicais/TetraFoguinho.jpg", info: "Pequeno tetra de cor vermelha intensa, ideal para plantados.", params: "pH: 6.0 - 7.0 | Temp: 24°C - 28°C" },
+            { name: "Rodóstomo", price: "R$ 12,00", img: "PeixesTropicais/Tetra.jpg", info: "Famoso pelo nariz vermelho e nado em cardume perfeito.", params: "pH: 5.5 - 7.0 | Temp: 24°C - 28°C" },
+            { name: "Tetra Pinguim Red", price: "R$ 26,00", img: "PeixesTropicais/TetraPinguimRed.jpg", info: "Tetra elegante de cardume.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            { name: "Paraíso Bronze", price: "R$ 55,00", img: "PeixesTropicais/ParaisoBronze.jpg", info: "Peixe paraíso de coloração bronze.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
 
-            { name: "Tetra Negro", price: "R$ 4,50", img: "PeixesTropicais/TetraNegro.jpg", info: "Peixe de cardume resistente e fácil de manter.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            // BARBOS E OUTROS MÉDIOS
+            { name: "Barbo Aurulios", price: "R$ 22,00", img: "PeixesTropicais/BarboAurulios.jpg", info: "Barbo ornamental ativo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+            { name: "Barbo Cereja", price: "R$ 6,50", img: "PeixesTropicais/BarboCereja.jpg", info: "Peixe pequeno e pacífico de coloração vermelha.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            { name: "Barbo Sumatra", price: "R$ 5,00", img: "PeixesTropicais/BarboSumatra.jpg", info: "Peixe muito ativo que vive em cardume.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+            { name: "Barbo Verde", price: "R$ 8,00", img: "PeixesTropicais/BarboVerde.jpg", info: "Variante verde metálica do barbo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+            { name: "Barbo Panda", price: "R$ 7,50", img: "PeixesTropicais/BarboPanda.jpg", info: "Barbo com padrão contrastante.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+            { name: "Barbo Ouro", price: "R$ 5,00", img: "PeixesTropicais/BarboOuro.jpg", info: "Barbo ativo ideal para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
             { name: "Barbo Oligolepis", price: "R$ 9,90", img: "PeixesTropicais/BarboOligolepis.jpg", info: "Barbo pequeno e ativo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
 
+            // GRANDES E UTILITÁRIOS
+            { name: "Pangassius Albino", price: "R$ 39,00", img: "PeixesTropicais/PangassiusAlbino.jpg", info: "Variante albina do pangassius.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
+            { name: "Pangassius", price: "R$ 22,00", img: "PeixesTropicais/Pangassius.jpg", info: "Peixe grande e ativo que precisa de aquários espaçosos.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
+            { name: "Algae Eater", price: "R$ 32,00", img: "PeixesTropicais/AlgaeEater.jpg", info: "Peixe conhecido por ajudar no controle de algas.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+
+            // COMUNITÁRIOS RESISTENTES (POPULARES)
+            { name: "Mexirica", price: "R$ 15,00", img: "PeixesTropicais/Mexirica.jpg", info: "Peixe ornamental popular no aquarismo.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
             { name: "Tetra Puxa Puxa", price: "R$ 22,00", img: "PeixesTropicais/TetraPuxa.jpg", info: "Tetra exótico para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
             { name: "Tricogaster", price: "R$ 9,00", img: "PeixesTropicais/Tricogaster.jpg", info: "Peixe labirintídeo pacífico.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Tetra Pinguim Red", price: "R$ 26,00", img: "PeixesTropicais/TetraPinguim.jpg", info: "Tetra elegante de cardume.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Tetra Enfermeirinha", price: "R$ 11,00", img: "PeixesTropicais/TetraEnfermeirinha.jpg", info: "Peixe muito ativo e resistente.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-
-            { name: "Mexirica", price: "R$ 15,00", img: "PeixesTropicais/Mexirica.jpg", info: "Peixe ornamental popular no aquarismo.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
             { name: "Cruzeiro do Sul", price: "R$ 12,00", img: "PeixesTropicais/CruzeiroDoSul.jpg", info: "Peixe pequeno ideal para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-
-            { name: "Paraíso Bronze", price: "R$ 55,00", img: "PeixesTropicais/ParaisoBronze.jpg", info: "Peixe paraíso de coloração bronze.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Aurulios", price: "R$ 22,00", img: "PeixesTropicais/BarboAurulios.jpg", info: "Barbo ornamental ativo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-
-            { name: "Ciclídeo Cubano", price: "R$ 0,00", img: "PeixesTropicais/CiclideoCubano.jpg", info: "Ciclídeo robusto de grande porte.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-
-            { name: "Arwana", price: "R$ 590,00", img: "PeixesTropicais/Aruana.jpg", info: "Peixe predador de grande porte e muito valorizado.", params: "pH: 6.0 - 7.0 | Temp: 26°C - 30°C" },
-
-            { name: "Acará Disco MTZ", price: "R$ 390,00", img: "PeixesTropicais/DiscoMTZ.jpg", info: "Variedade premium do acará disco.", params: "pH: 6.0 - 6.8 | Temp: 28°C - 30°C" }
+            { name: "Tetra Enfermeirinha", price: "R$ 11,00", img: "PeixesTropicais/TetraEnfermeirinha.jpg", info: "Peixe muito ativo e resistente.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            { name: "Tetra Negro", price: "R$ 4,50", img: "PeixesTropicais/TetraNegro.jpg", info: "Peixe de cardume resistente e fácil de manter.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
+            { name: "Platy Rubi", price: "R$ 6,00", img: "PeixesTropicais/PlatyRubi.jpg", info: "Platy com coloração vermelha intensa.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
+            { name: "Platy Aurora", price: "R$ 6,00", img: "PeixesTropicais/PlatyAurora.jpg", info: "Peixe pequeno, colorido e ideal para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
+            { name: "Molinésia Prata", price: "R$ 6,00", img: "PeixesTropicais/MolinesiaPrata.jpg", info: "Peixe resistente e ótimo para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" },
+            { name: "Molinésia Tigre", price: "R$ 3,50", img: "PeixesTropicais/MolinesiaTigre.jpg", info: "Variedade de molinésia com padrão rajado.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" }
         ],
 
         plantas: [
