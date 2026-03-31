@@ -47,49 +47,63 @@
 </head>
 <body class="text-slate-200 min-h-screen">
 
-<nav class="fixed w-full z-[100] px-4 md:px-8 py-4">
-    <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center border-white/10">
-        <a href="#" onclick="showPage('home')" class="text-2xl font-bold flex items-center gap-2 group">
-            <img src="imagens/Logo.png" class="w-10 h-10 object-contain">
+    <nav class="fixed w-full z-[100] px-4 md:px-8 py-4">
+        <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center border-white/10">
+            <a href="#" onclick="showPage('home')" class="text-2xl font-bold flex items-center gap-2 group">
+                <img src="imagens/Logo.png" class="w-10 h-10 object-contain">
+                <span class="tracking-tighter">Aqua<span class="text-sky-400">Pet</span></span>
+            </a>
 
-            <span class="tracking-tighter">Aqua<span class="text-sky-400">Pet</span></span>
-        </a>
-
-        <div class="hidden md:flex items-center gap-8">
-            <a href="#" onclick="showPage('home')" class="hover:text-sky-400 transition font-medium">Início</a>
-            
-            <div class="relative group py-2"> 
-                <button class="flex items-center gap-2 hover:text-sky-400 transition font-medium">
-                    Categorias <i class="fas fa-chevron-down text-[10px]"></i>
-                </button>
-                <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 w-64 dropdown-bridge transition-all duration-300">
-                    <div class="glass-card rounded-xl p-2 border-white/10 shadow-2xl">
-                        <a href="#" onclick="showPage('peixes')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Peixes Tropicais</a>
-                        <a href="#" onclick="showPage('plantas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Plantas Aquáticas</a>
-                        <a href="#" onclick="showPage('bettas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Bettas de Linhagem</a>
-                        <a href="#" onclick="showPage('invertebrados')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Invertebrados</a>
-                        <a href="#" onclick="showPage('anfibios')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Anfíbios</a>
-                        <hr class="my-2 border-white/10">
-                        <a href="#" onclick="showPage('equipamentos')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Equipamentos</a>
-                        <a href="#" onclick="showPage('condicionadores')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition">Condicionadores</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" onclick="showPage('home')" class="hover:text-sky-400 transition font-medium">Início</a>
+                
+                <div class="relative group py-2"> 
+                    <button class="flex items-center gap-2 hover:text-sky-400 transition font-medium">
+                        Categorias <i class="fas fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 w-64 dropdown-bridge transition-all duration-300">
+                        <div class="glass-card rounded-xl p-2 border-white/10 shadow-2xl">
+                            <a href="#" onclick="showPage('peixes')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Peixes Tropicais</a>
+                            <a href="#" onclick="showPage('plantas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Plantas Aquáticas</a>
+                            <a href="#" onclick="showPage('bettas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Bettas de Linhagem</a>
+                            <a href="#" onclick="showPage('invertebrados')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Invertebrados</a>
+                            <a href="#" onclick="showPage('anfibios')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Anfíbios</a>
+                            <hr class="my-2 border-white/10">
+                            <a href="#" onclick="showPage('equipamentos')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Equipamentos</a>
+                            <a href="#" onclick="showPage('condicionadores')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Condicionadores</a>
+                        </div>
                     </div>
                 </div>
+                <a href="#onde-estamos" class="hover:text-sky-400 transition font-medium">Localização</a>
             </div>
-            <a href="#onde-estamos" class="hover:text-sky-400 transition font-medium">Localização</a>
+
+            <button class="md:hidden text-2xl p-2" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-sky-400"></i>
+            </button>
         </div>
+    </nav>
 
-        <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars text-sky-400"></i>
-        </button>
-    </div>
-</nav>
-
-    <div id="mobileMenu" class="fixed inset-0 z-[90] bg-slate-950/95 backdrop-blur-xl hidden flex-col justify-center items-center gap-6 text-2xl font-bold">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8"><i class="fas fa-times"></i></button>
-        <a href="#" onclick="showPage('home'); toggleMobileMenu()">Início</a>
-        <a href="#" onclick="showPage('peixes'); toggleMobileMenu()">Peixes</a>
-        <a href="#" onclick="showPage('plantas'); toggleMobileMenu()">Plantas</a>
-        <a href="#" onclick="showPage('equipamentos'); toggleMobileMenu()">Equipamentos</a>
+    <div id="mobileMenu" class="fixed inset-0 z-[150] bg-slate-950/98 backdrop-blur-2xl hidden flex-col p-8 overflow-y-auto">
+        <div class="flex justify-between items-center mb-12">
+            <span class="text-2xl font-bold">Menu</span>
+            <button onclick="toggleMobileMenu()" class="text-3xl text-sky-400"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="flex flex-col gap-6 text-xl font-semibold">
+            <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="border-b border-white/5 pb-4">Início</a>
+            
+            <p class="text-xs uppercase tracking-widest text-sky-400 font-bold mt-4">Categorias</p>
+            <a href="#" onclick="showPage('peixes'); toggleMobileMenu()" class="hover:text-sky-400 transition">Peixes Tropicais</a>
+            <a href="#" onclick="showPage('plantas'); toggleMobileMenu()" class="hover:text-sky-400 transition">Plantas Aquáticas</a>
+            <a href="#" onclick="showPage('bettas'); toggleMobileMenu()" class="hover:text-sky-400 transition">Bettas de Linhagem</a>
+            <a href="#" onclick="showPage('invertebrados'); toggleMobileMenu()" class="hover:text-sky-400 transition">Invertebrados</a>
+            <a href="#" onclick="showPage('anfibios'); toggleMobileMenu()" class="hover:text-sky-400 transition">Anfíbios</a>
+            <a href="#" onclick="showPage('equipamentos'); toggleMobileMenu()" class="hover:text-sky-400 transition">Equipamentos</a>
+            <a href="#" onclick="showPage('condicionadores'); toggleMobileMenu()" class="hover:text-sky-400 transition">Condicionadores</a>
+            
+            <p class="text-xs uppercase tracking-widest text-sky-400 font-bold mt-4">Institucional</p>
+            <a href="#onde-estamos" onclick="toggleMobileMenu()" class="hover:text-sky-400 transition">Onde Estamos</a>
+        </div>
     </div>
 
     <main id="page-home" class="category-page active pt-32 pb-20">
@@ -111,7 +125,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                 <div onclick="showPage('peixes')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1524704654690-b56c05c78a00?q=80&w=800" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
+                    <img src="PeixesTropicais/Arwana.jpg" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
                     <div class="relative z-10"><h3 class="text-2xl font-bold">Peixes Tropicais</h3><p class="text-sky-400">Beleza em movimento</p></div>
                 </div>
 
