@@ -1,0 +1,327 @@
+/* ============================================================================
+   AQUAPET — ESTILO PREMIUM "DEEP OCEAN"
+   (arquivo de aparência — normalmente você NÃO precisa mexer aqui)
+   ============================================================================ */
+
+:root {
+  --abyss:        #03060e;
+  --deep:         #060b18;
+  --surface:      #0a1326;
+  --aqua:         #38bdf8;
+  --aqua-bright:  #7dd3fc;
+  --teal:         #2dd4bf;
+  --indigo:       #6366f1;
+  --foam:         #e0f2fe;
+  --gold:         #fbbf24;
+  --coral:        #fb7185;
+
+  --glass-bg:     rgba(13, 22, 42, 0.55);
+  --glass-bord:   rgba(255, 255, 255, 0.08);
+  --glass-bord-2: rgba(125, 211, 252, 0.25);
+
+  --txt:          #e6eefc;
+  --txt-soft:     #9fb3d1;
+  --txt-dim:      #6b7e9e;
+
+  --radius:       1.75rem;
+  --shadow-soft:  0 20px 50px -25px rgba(0, 0, 0, 0.85);
+  --shadow-glow:  0 0 0 1px rgba(125, 211, 252, 0.15), 0 30px 60px -30px rgba(56, 189, 248, 0.45);
+  --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--txt);
+  background-color: var(--abyss);
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Sora', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection { background: rgba(56, 189, 248, 0.3); color: #fff; }
+
+/* ----- Fundo oceânico animado (camadas) -------------------------------- */
+.ocean-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(1200px 700px at 8% -5%,  rgba(56, 189, 248, 0.16), transparent 60%),
+    radial-gradient(1100px 700px at 100% 0%, rgba(99, 102, 241, 0.14), transparent 55%),
+    radial-gradient(1000px 800px at 50% 120%, rgba(45, 212, 191, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--abyss) 0%, var(--deep) 45%, #05091a 100%);
+}
+
+/* brilho de aurora que respira lentamente */
+.ocean-bg::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    conic-gradient(from 120deg at 30% 30%, rgba(56,189,248,0.08), transparent 40%),
+    conic-gradient(from 300deg at 70% 60%, rgba(45,212,191,0.08), transparent 45%);
+  filter: blur(40px);
+  animation: drift 26s var(--ease) infinite alternate;
+}
+
+@keyframes drift {
+  0%   { transform: translate3d(-2%, -1%, 0) scale(1);    opacity: 0.8; }
+  100% { transform: translate3d(3%, 2%, 0)  scale(1.12);  opacity: 1; }
+}
+
+/* cáusticas (linhas de luz da água) */
+.caustics {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(115deg, transparent 0 22px, rgba(125,211,252,0.05) 22px 23px),
+    repeating-linear-gradient(65deg,  transparent 0 30px, rgba(45,212,191,0.045) 30px 31px);
+  mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 75%);
+  animation: caustic-move 18s linear infinite;
+}
+
+@keyframes caustic-move {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 240px 120px, -200px 160px; }
+}
+
+/* ----- Vidro / cartões -------------------------------------------------- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--glass-bord);
+  box-shadow: var(--shadow-soft);
+}
+
+.glass-strong {
+  background: rgba(10, 19, 38, 0.78);
+  backdrop-filter: blur(26px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
+  border: 1px solid var(--glass-bord);
+}
+
+.hairline { border: 1px solid var(--glass-bord); }
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--aqua-bright), var(--teal) 55%, var(--aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ----- Botões ----------------------------------------------------------- */
+.btn-primary {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.95rem 1.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #04121f;
+  background: linear-gradient(100deg, var(--aqua-bright), var(--teal));
+  box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.6);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -10px rgba(56, 189, 248, 0.75); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--txt);
+  border: 1px solid var(--glass-bord-2);
+  background: rgba(255,255,255,0.03);
+  transition: all 0.3s var(--ease);
+}
+.btn-ghost:hover { background: rgba(56,189,248,0.12); border-color: var(--aqua); }
+
+/* ----- Navbar ----------------------------------------------------------- */
+.nav-shell { transition: all 0.4s var(--ease); }
+.nav-shell.scrolled {
+  background: rgba(6, 11, 24, 0.72);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.8);
+}
+.nav-link { position: relative; transition: color 0.25s ease; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: -6px;
+  width: 0; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--aqua), var(--teal));
+  transition: width 0.3s var(--ease);
+}
+.nav-link:hover { color: var(--aqua-bright); }
+.nav-link:hover::after { width: 100%; }
+
+/* ----- Reveal on scroll ------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+/* ----- Selos de produto ------------------------------------------------- */
+.badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.68rem; font-weight: 800; letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem; border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+.badge-pop   { color: #052e2b; background: linear-gradient(100deg, var(--teal), #5eead4); }
+.badge-promo { color: #3a2400; background: linear-gradient(100deg, var(--gold), #fcd34d); }
+
+/* ----- Cartão de categoria --------------------------------------------- */
+.cat-card { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; }
+.cat-card img { transition: transform 0.9s var(--ease), filter 0.6s ease; }
+.cat-card:hover img { transform: scale(1.12); filter: saturate(1.2); }
+.cat-card .veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(3,6,14,0.05) 0%, rgba(3,6,14,0.55) 55%, rgba(3,6,14,0.94) 100%);
+  transition: opacity 0.4s ease;
+}
+.cat-card:hover .veil { opacity: 0.85; }
+
+/* ----- Cartão de produto ------------------------------------------------ */
+.prod-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s ease;
+}
+.prod-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: var(--glass-bord-2); }
+.prod-img { position: relative; overflow: hidden; aspect-ratio: 1 / 1; background: #0a1326; padding: 0.5rem; }
+.prod-img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.7s var(--ease); }
+.prod-card:hover .prod-img img { transform: scale(1.1); }
+.prod-img::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(6,11,24,0.65) 100%);
+}
+.price-old { color: var(--txt-dim); text-decoration: line-through; font-size: 0.85rem; }
+.price-now { color: var(--aqua-bright); font-weight: 800; }
+
+/* pílulas de filtro */
+.pill {
+  padding: 0.55rem 1.1rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+  border: 1px solid var(--glass-bord); color: var(--txt-soft);
+  background: rgba(255,255,255,0.03); cursor: pointer; white-space: nowrap;
+  transition: all 0.25s var(--ease);
+}
+.pill:hover { color: var(--txt); border-color: var(--glass-bord-2); }
+.pill.active {
+  color: #04121f; border-color: transparent;
+  background: linear-gradient(100deg, var(--aqua-bright), var(--teal));
+  box-shadow: 0 8px 20px -8px rgba(56,189,248,0.6);
+}
+
+/* ----- Mural de avisos -------------------------------------------------- */
+.aviso {
+  position: relative; border-radius: 1.4rem; overflow: hidden;
+  border: 1px solid var(--glass-bord);
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+}
+.aviso::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
+.aviso .aviso-ico {
+  width: 2.75rem; height: 2.75rem; border-radius: 0.9rem;
+  display: grid; place-items: center; font-size: 1.1rem; flex-shrink: 0;
+}
+.aviso-atendimento::before { background: linear-gradient(var(--aqua), var(--indigo)); }
+.aviso-atendimento .aviso-ico { background: rgba(56,189,248,0.15); color: var(--aqua-bright); }
+.aviso-promocao::before { background: linear-gradient(var(--teal), #5eead4); }
+.aviso-promocao .aviso-ico { background: rgba(45,212,191,0.15); color: var(--teal); }
+.aviso-fechado::before { background: linear-gradient(var(--coral), #f43f5e); }
+.aviso-fechado .aviso-ico { background: rgba(251,113,133,0.15); color: var(--coral); }
+.aviso-aviso::before { background: linear-gradient(var(--gold), #fcd34d); }
+.aviso-aviso .aviso-ico { background: rgba(251,191,36,0.15); color: var(--gold); }
+
+.aviso-destaque {
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(56,189,248,0.12), transparent 60%),
+    var(--glass-bg);
+}
+
+/* ----- Calendário ------------------------------------------------------- */
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; }
+.cal-dow { text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--txt-dim); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 0.25rem; }
+.cal-day {
+  position: relative; aspect-ratio: 1 / 1; border-radius: 0.85rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 0.95rem;
+  border: 1px solid transparent; cursor: default;
+  transition: transform 0.2s var(--ease), background 0.2s ease;
+}
+.cal-day.has-info { cursor: pointer; }
+.cal-day.has-info:hover { transform: translateY(-3px); }
+.cal-day .dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 3px; }
+.cal-empty { aspect-ratio: 1/1; }
+
+.cal-aberto   { background: rgba(45,212,191,0.12);  border-color: rgba(45,212,191,0.30); color: #c7fff4; }
+.cal-aberto .dot   { background: var(--teal); }
+.cal-fechado  { background: rgba(251,113,133,0.10); border-color: rgba(251,113,133,0.28); color: #ffd9df; }
+.cal-fechado .dot  { background: var(--coral); }
+.cal-especial { background: rgba(251,191,36,0.12);  border-color: rgba(251,191,36,0.30); color: #ffeec2; }
+.cal-especial .dot { background: var(--gold); }
+.cal-today { outline: 2px solid var(--aqua); outline-offset: 1px; }
+
+/* ----- Modal de produto ------------------------------------------------- */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(2, 5, 12, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center; padding: 1.25rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s var(--ease);
+}
+.modal-backdrop.open { opacity: 1; pointer-events: auto; }
+.modal-card {
+  position: relative;
+  width: min(920px, 100%); max-height: 90vh; overflow: auto;
+  border-radius: 1.75rem;
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.4s var(--ease);
+}
+.modal-backdrop.open .modal-card { transform: none; }
+
+/* ----- Menu mobile ------------------------------------------------------ */
+.mobile-menu { transition: opacity 0.35s var(--ease); }
+
+/* ----- Scrollbar -------------------------------------------------------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--abyss); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--aqua), var(--indigo)); border-radius: 999px; border: 2px solid var(--abyss); }
+
+/* mapa em tom escuro */
+.map-frame iframe { filter: invert(92%) hue-rotate(180deg) brightness(0.9) contrast(0.95); border-radius: 1.5rem; }
+
+/* divisor ondulado sutil */
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--aqua-bright);
+}
+.section-label::before { content: ""; width: 28px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--aqua), transparent); }
+
+/* ----- Acessibilidade: reduzir movimento -------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ocean-bg::after, .caustics { animation: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  * { transition-duration: 0.01ms !important; }
+}

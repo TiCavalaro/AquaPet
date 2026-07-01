@@ -1,327 +1,259 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="imagens/Logo.png">
-    <title>AquaPet</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        
-        :root {
-            --deep-ocean: #020617;
-            --accent-blue: #38bdf8;
-            --glass-bg: rgba(15, 23, 42, 0.7);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AquaPet — loja de aquarismo profissional em Araçatuba. Peixes tropicais, bettas de linhagem, plantas, camarões, equipamentos e condicionadores." />
+  <link rel="icon" type="image/png" href="imagens/Logo.png" />
+  <title>AquaPet — Aquarismo Profissional</title>
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--deep-ocean);
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 35%),
-                radial-gradient(circle at 100% 100%, rgba(99, 102, 241, 0.08) 0%, transparent 35%);
-            background-attachment: fixed;
-        }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
-        }
-
-        .dropdown-bridge { padding-top: 15px; margin-top: -15px; }
-
-        .category-page { display: none; }
-        .category-page.active { display: block; animation: fadeIn 0.5s ease; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .map-container iframe {
-            filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
-            border-radius: 1.5rem;
-        }
-    </style>
+  <!-- Estilos -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilo.css" />
 </head>
-<body class="text-slate-200 min-h-screen">
 
-    <nav class="fixed w-full z-[100] px-4 md:px-8 py-4">
-        <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center border-white/10">
-            <a href="#" onclick="showPage('home')" class="text-2xl font-bold flex items-center gap-2 group">
-                <img src="imagens/Logo.png" class="w-10 h-10 object-contain">
-                <span class="tracking-tighter">Aqua<span class="text-sky-400">Pet</span></span>
-            </a>
+<body class="text-slate-200 antialiased">
 
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#" onclick="showPage('home')" class="hover:text-sky-400 transition font-medium">Início</a>
-                
-                <div class="relative group py-2"> 
-                    <button class="flex items-center gap-2 hover:text-sky-400 transition font-medium">
-                        Categorias <i class="fas fa-chevron-down text-[10px]"></i>
-                    </button>
-                    <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 absolute top-full left-0 w-64 dropdown-bridge transition-all duration-300">
-                        <div class="glass-card rounded-xl p-2 border-white/10 shadow-2xl">
-                            <a href="#" onclick="showPage('peixes')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Peixes Tropicais</a>
-                            <a href="#" onclick="showPage('plantas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Plantas Aquáticas</a>
-                            <a href="#" onclick="showPage('bettas')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Bettas de Linhagem</a>
-                            <a href="#" onclick="showPage('invertebrados')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Invertebrados</a>
-                            <a href="#" onclick="showPage('anfibios')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Anfíbios</a>
-                            <hr class="my-2 border-white/10">
-                            <a href="#" onclick="showPage('equipamentos')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Equipamentos</a>
-                            <a href="#" onclick="showPage('condicionadores')" class="block px-4 py-3 hover:bg-sky-500/20 rounded-lg transition text-sm">Condicionadores</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="#onde-estamos" class="hover:text-sky-400 transition font-medium">Localização</a>
-            </div>
+  <!-- Fundo oceânico animado -->
+  <div class="ocean-bg"></div>
+  <div class="caustics"></div>
 
-            <button class="md:hidden text-2xl p-2" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars text-sky-400"></i>
-            </button>
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="fixed top-0 inset-x-0 z-[100] px-3 sm:px-6 pt-3 sm:pt-4">
+    <nav id="nav-shell" class="nav-shell max-w-7xl mx-auto rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between glass">
+      <a href="#inicio" class="flex items-center gap-2.5 group">
+        <img src="imagens/Logo.png" alt="Logo AquaPet" class="w-9 h-9 object-contain" />
+        <span class="text-xl font-bold tracking-tight font-display">
+          <span data-loja-nome class="text-gradient">AquaPet</span>
+        </span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
+        <a href="#inicio" class="nav-link">Início</a>
+        <a href="#avisos" class="nav-link">Avisos</a>
+        <a href="#calendario" class="nav-link">Calendário</a>
+        <div class="relative group py-2">
+          <button class="nav-link flex items-center gap-1.5">Categorias <i class="fa-solid fa-chevron-down text-[9px]"></i></button>
+          <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute top-full right-0 w-72 pt-3 transition-all duration-300">
+            <div id="nav-cat-list" class="glass-strong rounded-2xl p-2 shadow-2xl"></div>
+          </div>
         </div>
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#localizacao" class="nav-link">Localização</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a data-loja-whats href="#" target="_blank" rel="noopener" class="hidden sm:inline-flex btn-primary !py-2.5 !px-4 text-sm">
+          <i class="fa-brands fa-whatsapp text-base"></i> Fale conosco
+        </a>
+        <button id="btn-mobile" aria-label="Abrir menu" class="lg:hidden w-11 h-11 grid place-items-center rounded-xl glass text-xl text-sky-400">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </nav>
+  </header>
 
-    <div id="mobileMenu" class="fixed inset-0 z-[150] bg-slate-950/98 backdrop-blur-2xl hidden flex-col p-8 overflow-y-auto">
-        <div class="flex justify-between items-center mb-12">
-            <span class="text-2xl font-bold">Menu</span>
-            <button onclick="toggleMobileMenu()" class="text-3xl text-sky-400"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <div class="flex flex-col gap-6 text-xl font-semibold">
-            <a href="#" onclick="showPage('home'); toggleMobileMenu()" class="border-b border-white/5 pb-4">Início</a>
-            
-            <p class="text-xs uppercase tracking-widest text-sky-400 font-bold mt-4">Categorias</p>
-            <a href="#" onclick="showPage('peixes'); toggleMobileMenu()" class="hover:text-sky-400 transition">Peixes Tropicais</a>
-            <a href="#" onclick="showPage('plantas'); toggleMobileMenu()" class="hover:text-sky-400 transition">Plantas Aquáticas</a>
-            <a href="#" onclick="showPage('bettas'); toggleMobileMenu()" class="hover:text-sky-400 transition">Bettas de Linhagem</a>
-            <a href="#" onclick="showPage('invertebrados'); toggleMobileMenu()" class="hover:text-sky-400 transition">Invertebrados</a>
-            <a href="#" onclick="showPage('anfibios'); toggleMobileMenu()" class="hover:text-sky-400 transition">Anfíbios</a>
-            <a href="#" onclick="showPage('equipamentos'); toggleMobileMenu()" class="hover:text-sky-400 transition">Equipamentos</a>
-            <a href="#" onclick="showPage('condicionadores'); toggleMobileMenu()" class="hover:text-sky-400 transition">Condicionadores</a>
-            
-            <p class="text-xs uppercase tracking-widest text-sky-400 font-bold mt-4">Institucional</p>
-            <a href="#onde-estamos" onclick="toggleMobileMenu()" class="hover:text-sky-400 transition">Onde Estamos</a>
-        </div>
+  <!-- ===================== MENU MOBILE ===================== -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[150] bg-slate-950/95 backdrop-blur-2xl hidden flex-col p-7 overflow-y-auto">
+    <div class="flex items-center justify-between mb-10">
+      <span class="text-xl font-bold font-display"><span data-loja-nome class="text-gradient">AquaPet</span></span>
+      <button id="btn-mobile-close" aria-label="Fechar menu" class="w-11 h-11 grid place-items-center rounded-xl glass text-2xl text-sky-400"><i class="fa-solid fa-xmark"></i></button>
     </div>
+    <nav class="flex flex-col gap-5 text-lg font-semibold">
+      <a href="#inicio" data-goto-close class="hover:text-sky-400 transition">Início</a>
+      <a href="#avisos" class="hover:text-sky-400 transition">Mural de Avisos</a>
+      <a href="#calendario" class="hover:text-sky-400 transition">Calendário</a>
+      <a href="#localizacao" class="hover:text-sky-400 transition">Localização</a>
+      <p class="text-xs uppercase tracking-widest text-sky-400 font-bold mt-4">Categorias</p>
+      <div id="mobile-cat-list" class="flex flex-col gap-1 text-base font-medium"></div>
+      <a data-loja-whats href="#" target="_blank" rel="noopener" class="btn-primary justify-center mt-6"><i class="fa-brands fa-whatsapp text-lg"></i> Fale no WhatsApp</a>
+    </nav>
+  </div>
 
-    <main id="page-home" class="category-page active pt-32 pb-20">
-        <section class="max-w-7xl mx-auto px-6">
-            <div class="relative flex flex-col items-center text-center mb-20">
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section id="inicio" class="relative min-h-[88vh] flex items-center pt-28 pb-16">
+      <div class="max-w-7xl mx-auto px-6 w-full">
+        <div class="relative flex flex-col items-center text-center">
+          <img src="imagens/Logo.png" alt="" aria-hidden="true" class="absolute -top-10 w-[360px] max-w-[80vw] opacity-20 blur-[2px] pointer-events-none select-none" />
+          <span class="section-label mb-6 reveal">Araçatuba • Aquarismo de alto nível</span>
+          <h1 class="relative text-5xl sm:text-7xl md:text-8xl font-extrabold font-display leading-[0.95] mb-6 reveal" data-delay="1">
+            <br /><span class="text-gradient">Aquapet</span> 
+          </h1>
+          <p data-loja-slogan class="relative text-slate-300/90 text-lg md:text-xl max-w-2xl mb-9 reveal" data-delay="2">
+          </p>
+          <div class="relative flex flex-wrap items-center justify-center gap-4 reveal" data-delay="3">
+            <a href="#catalogo" class="btn-primary"><i class="fa-solid fa-fish"></i> Explorar catálogo</a>
+            <a href="#calendario" class="btn-ghost"><i class="fa-solid fa-calendar-day"></i> Ver atendimento</a>
+          </div>
 
-                <!-- LOGO BACKGROUND -->
-                <img src="imagens/Logo.png" 
-                    class="absolute w-[420px] opacity-40 blur-sm pointer-events-none select-none">
-
-                <h1 class="relative text-6xl md:text-8xl font-bold tracking-tight mb-6">
-                    AquaPet <br><span class="text-sky-400">Peixes</span>
-                </h1>
-                <p class="relative text-slate-400 text-xl max-w-2xl">
-                    A maior loja de aquarismo profissional de Araçatuba. Referência em ecossistemas de água doce.
-                </p>
-
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-                <div onclick="showPage('peixes')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="PeixesTropicais/Arwana.jpg" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Peixes Tropicais</h3><p class="text-sky-400">Beleza em movimento</p></div>
-                </div>
-
-                <div onclick="showPage('plantas')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="imagens/Aquario-Plantado-2.jpg" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Plantas</h3><p class="text-sky-400">O pulmão do aquário</p></div>
-                </div>
-
-                <div onclick="showPage('bettas')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="Bettas/BettaCandy.jpg" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Bettas</h3><p class="text-sky-400">Linhagens exclusivas</p></div>
-                </div>
-
-                <div onclick="showPage('invertebrados')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="Camarao/Galaxy.jpg" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Camarões</h3><p class="text-sky-400">Equipe de limpeza</p></div>
-                </div>
-
-                <div onclick="showPage('equipamentos')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1501446529957-6226bd447c46?q=80&w=800" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Tecnologia</h3><p class="text-sky-400">Filtragem e Automação</p></div>
-                </div>
-
-                <div onclick="showPage('condicionadores')" class="glass-card rounded-[2.5rem] p-8 h-64 flex flex-col justify-end cursor-pointer group relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1604177091072-b13812745331?q=80&w=800" class="absolute inset-0 w-full h-full object-cover  group-hover:scale-110 transition duration-700">
-                    <div class="relative z-10"><h3 class="text-2xl font-bold">Química</h3><p class="text-sky-400">Equilíbrio da água</p></div>
-                </div>
-            </div>
-
-            <section id="onde-estamos" class="mt-32">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4">Visite nossa Loja</h2>
-                    <p class="text-slate-400">R. Gen. Osório, 183 - Centro, Araçatuba - SP</p>
-                </div>
-                <div class="glass-card p-4 rounded-[2.5rem] overflow-hidden map-container h-[450px]">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.4658145719393!2d-50.4398188239082!3d-21.212379880194512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9496423984534f4b%3A0x64f4345d3663a87!2sR.%20Gen.%20Os%C3%B3rio%2C%20183%20-%20Centro%2C%20Ara%C3%A7atuba%20-%20SP%2C%2016010-290!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                </div>
-            </section>
-        </section>
-    </main>
-
-    <main id="category-template" class="category-page pt-32 pb-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div>
-                    <nav class="text-sm text-slate-500 mb-2 uppercase tracking-widest font-bold">Catálogo</nav>
-                    <h1 id="category-title" class="text-5xl font-bold">Categoria</h1>
-                </div>
-                <div class="relative w-full md:w-96">
-                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input type="text" id="productSearch" onkeyup="filterProducts()" placeholder="Pesquisar..." class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 focus:outline-none focus:border-sky-500 transition search-glow outline-none">
-                </div>
-            </div>
-            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+          <div class="relative grid grid-cols-3 gap-4 sm:gap-8 mt-16 w-full max-w-2xl reveal">
+            <div class="text-center"><p class="text-3xl sm:text-4xl font-bold text-gradient font-display"><span data-stat-produtos>+80</span></p><p class="text-xs sm:text-sm text-slate-400 mt-1">Espécies & itens</p></div>
+            <div class="text-center border-x border-white/10"><p class="text-3xl sm:text-4xl font-bold text-gradient font-display"><span data-stat-categorias>7</span></p><p class="text-xs sm:text-sm text-slate-400 mt-1">Categorias</p></div>
+            <div class="text-center"><p class="text-3xl sm:text-4xl font-bold text-gradient font-display">100%</p><p class="text-xs sm:text-sm text-slate-400 mt-1">Paixão por água doce</p></div>
+          </div>
         </div>
-    </main>
+      </div>
+    </section>
 
-    <script>
-    const database = {
-        peixes: [
-            // ELITE: Alta Beleza e Alta Popularidade
-            { name: "Acará Disco", price: "R$ 180,00", img: "PeixesTropicais/Disco.jpg", info: "O rei do aquário de água doce, cores vibrantes e comportamento elegante.", params: "pH: 6.0 - 6.8 | Temp: 28°C - 30°C" },
-            { name: "Arwana", price: "R$ 590,00", img: "PeixesTropicais/Arwana.jpg", info: "Peixe predador de grande porte e muito valorizado.", params: "pH: 6.0 - 7.0 | Temp: 26°C - 30°C" },
-            { name: "Peixe Anjo", price: "R$ 45,00", img: "PeixesTropicais/Angel.jpg", info: "Clássico e majestoso, essencial em aquários comunitários grandes.", params: "pH: 6.5 - 7.0 | Temp: 24°C - 28°C" },
+    <!-- ===================== MURAL DE AVISOS ===================== -->
+    <section id="avisos" class="py-20 scroll-mt-24">
+      <div id="sec-avisos" class="max-w-7xl mx-auto px-6">
+        <div class="mb-10 reveal">
+          <span class="section-label mb-3">Mural de avisos</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-display">Fique por dentro</h2>
+          <p class="text-slate-400 mt-2">Atendimento, novidades e promoções — tudo atualizado para você.</p>
+        </div>
+        <div id="avisos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </div>
+    </section>
 
-            // ORNAMENTAIS (KINGUIOS): Alta Beleza e Muito Populares
-            { name: "Red Cap MTZ", price: "R$ 89,00", img: "PeixesTropicais/RedCap.jpg", info: "Kinguio Oranda famoso pelo 'capuz' vermelho na cabeça.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "Telescópio Red Black MTZ", price: "R$ 109,00", img: "PeixesTropicais/TlRed.jpg", info: "Kinguios ornamentais de olhos telescópicos e coloração intensa.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "King White Red", price: "R$ 79,00", img: "PeixesTropicais/Oranda.jpg", info: "Variedade ornamental de kinguio com coloração branca e vermelha.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "Telescópio White Red", price: "R$ 59,00", img: "PeixesTropicais/TelescopioWhiteRed.jpg", info: "Kinguio telescópio com coloração branca e vermelha.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
-            { name: "Telescópio P", price: "R$ 15,00", img: "PeixesTropicais/TelescopioBlack.jpg", info: "Variedade pequena de kinguio telescópio.", params: "pH: 6.5 - 7.5 | Temp: 20°C - 24°C" },
+    <!-- ===================== CALENDÁRIO ===================== -->
+    <section id="calendario" class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-10 reveal">
+          <span class="section-label mb-3">Calendário de atendimento</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-display">Quando estamos abertos</h2>
+          <p class="text-slate-400 mt-2">Clique em um dia para ver o horário. Verde = aberto · Vermelho = fechado · Amarelo = horário especial.</p>
+        </div>
 
-            // CICLÍDEOS GRANDES E INTELIGENTES
-            { name: "Oscar Albino", price: "R$ 159,00", img: "PeixesTropicais/OscarAlbino.jpg", info: "Variante albina do Oscar, muito apreciada no aquarismo.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Oscar Bumblebee", price: "R$ 129,00", img: "PeixesTropicais/OscarBumblebee.jpg", info: "Variedade de Oscar com padrão amarelo e preto.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Oscar Bronze VEL", price: "R$ 129,00", img: "PeixesTropicais/OscarBronze.jpg", info: "Ciclídeo grande e territorial, muito inteligente.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+        <div class="grid lg:grid-cols-3 gap-6">
+          <!-- horário semanal -->
+          <div class="glass rounded-3xl p-6 reveal">
+            <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-business-time text-sky-400"></i> Horário da semana</h3>
+            <div id="cal-semanal"></div>
+            <div class="mt-6 flex flex-wrap gap-3 text-xs">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:#2dd4bf"></span>Aberto</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:#fb7185"></span>Fechado</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full" style="background:#fbbf24"></span>Especial</span>
+            </div>
+          </div>
 
-            // CICLÍDEOS AFRICANOS E EXÓTICOS
-            { name: "Labidochromis Yellow", price: "R$ 29,00", img: "PeixesTropicais/LabidochromisYellow.jpg", info: "Mbuna africano amarelo muito popular.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
-            { name: "Venustus", price: "R$ 29,00", img: "PeixesTropicais/Venustus.jpg", info: "Ciclídeo africano com padrão manchado.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
-            { name: "Demasoni Pombo", price: "R$ 32,00", img: "PeixesTropicais/Demasoni.jpg", info: "Mbuna pequeno e territorial.", params: "pH: 7.5 - 8.5 | Temp: 24°C - 28°C" },
-            { name: "Ciclídeo Cubano", price: "R$ 0,00", img: "PeixesTropicais/CiclideoCubano.jpg", info: "Ciclídeo robusto de grande porte.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Ciclídeos Variados", price: "R$ 12,00", img: "PeixesTropicais/Ciclideos.jpg", info: "Diversas espécies de ciclídeos ornamentais.", params: "pH: Variável | Temp: 24°C - 28°C" },
+          <!-- grade do mês -->
+          <div class="glass rounded-3xl p-6 lg:col-span-2 reveal" data-delay="1">
+            <div class="flex items-center justify-between mb-5">
+              <button id="cal-prev" aria-label="Mês anterior" class="w-10 h-10 grid place-items-center rounded-xl glass hover:text-sky-400 transition"><i class="fa-solid fa-chevron-left"></i></button>
+              <h3 id="cal-title" class="font-bold text-lg font-display">—</h3>
+              <button id="cal-next" aria-label="Próximo mês" class="w-10 h-10 grid place-items-center rounded-xl glass hover:text-sky-400 transition"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div id="cal-grid" class="cal-grid"></div>
+            <div id="cal-info" class="hidden mt-5 glass-strong rounded-2xl px-4 py-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            // CARDUMES COLORIDOS E EXÓTICOS
-            { name: "Tetra Foguinho", price: "R$ 8,00", img: "PeixesTropicais/TetraFoguinho.jpg", info: "Pequeno tetra de cor vermelha intensa, ideal para plantados.", params: "pH: 6.0 - 7.0 | Temp: 24°C - 28°C" },
-            { name: "Rodóstomo", price: "R$ 12,00", img: "PeixesTropicais/Tetra.jpg", info: "Famoso pelo nariz vermelho e nado em cardume perfeito.", params: "pH: 5.5 - 7.0 | Temp: 24°C - 28°C" },
-            { name: "Tetra Pinguim Red", price: "R$ 26,00", img: "PeixesTropicais/TetraPinguimRed.jpg", info: "Tetra elegante de cardume.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Paraíso Bronze", price: "R$ 55,00", img: "PeixesTropicais/ParaisoBronze.jpg", info: "Peixe paraíso de coloração bronze.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+    <!-- ===================== CATEGORIAS ===================== -->
+    <section id="categorias" class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-10 reveal">
+          <span class="section-label mb-3">Explore por categoria</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-display">Tudo para o seu aquário</h2>
+        </div>
+        <div id="categorias-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </div>
+    </section>
 
-            // BARBOS E OUTROS MÉDIOS
-            { name: "Barbo Aurulios", price: "R$ 22,00", img: "PeixesTropicais/BarboAurulios.jpg", info: "Barbo ornamental ativo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Cereja", price: "R$ 6,50", img: "PeixesTropicais/BarboCereja.jpg", info: "Peixe pequeno e pacífico de coloração vermelha.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Barbo Sumatra", price: "R$ 5,00", img: "PeixesTropicais/BarboSumatra.jpg", info: "Peixe muito ativo que vive em cardume.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Verde", price: "R$ 8,00", img: "PeixesTropicais/BarboVerde.jpg", info: "Variante verde metálica do barbo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Panda", price: "R$ 7,50", img: "PeixesTropicais/BarboPanda.jpg", info: "Barbo com padrão contrastante.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Ouro", price: "R$ 5,00", img: "PeixesTropicais/BarboOuro.jpg", info: "Barbo ativo ideal para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
-            { name: "Barbo Oligolepis", price: "R$ 9,90", img: "PeixesTropicais/BarboOligolepis.jpg", info: "Barbo pequeno e ativo.", params: "pH: 6.0 - 7.5 | Temp: 22°C - 26°C" },
+    <!-- ===================== CATÁLOGO ===================== -->
+    <section id="catalogo" class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal">
+          <div>
+            <span class="section-label mb-3">Catálogo completo</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-display">Nossos produtos</h2>
+            <p id="catalogo-count" class="text-slate-400 mt-2 text-sm"></p>
+          </div>
+          <div class="relative w-full md:w-80">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+            <input id="busca" type="text" placeholder="Pesquisar produto..." class="w-full glass rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:border-sky-500 transition" />
+          </div>
+        </div>
 
-            // GRANDES E UTILITÁRIOS
-            { name: "Pangassius Albino", price: "R$ 39,00", img: "PeixesTropicais/PangassiusAlbino.jpg", info: "Variante albina do pangassius.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Pangassius", price: "R$ 22,00", img: "PeixesTropicais/Pangassius.jpg", info: "Peixe grande e ativo que precisa de aquários espaçosos.", params: "pH: 6.5 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Algae Eater", price: "R$ 32,00", img: "PeixesTropicais/AlgaeEater.jpg", info: "Peixe conhecido por ajudar no controle de algas.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
+        <div id="filtros" class="flex gap-2.5 overflow-x-auto pb-3 mb-8 -mx-1 px-1 reveal"></div>
 
-            // COMUNITÁRIOS RESISTENTES (POPULARES)
-            { name: "Mexirica", price: "R$ 15,00", img: "PeixesTropicais/Mexirica.jpg", info: "Peixe ornamental popular no aquarismo.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Tetra Puxa Puxa", price: "R$ 22,00", img: "PeixesTropicais/TetraPuxa.jpg", info: "Tetra exótico para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Tricogaster", price: "R$ 9,00", img: "PeixesTropicais/Tricogaster.jpg", info: "Peixe labirintídeo pacífico.", params: "pH: 6.0 - 7.5 | Temp: 24°C - 28°C" },
-            { name: "Cruzeiro do Sul", price: "R$ 12,00", img: "PeixesTropicais/CruzeiroDoSul.jpg", info: "Peixe pequeno ideal para aquários comunitários.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Tetra Enfermeirinha", price: "R$ 11,00", img: "PeixesTropicais/TetraEnfermeirinha.jpg", info: "Peixe muito ativo e resistente.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Tetra Negro", price: "R$ 4,50", img: "PeixesTropicais/TetraNegro.jpg", info: "Peixe de cardume resistente e fácil de manter.", params: "pH: 6.0 - 7.5 | Temp: 23°C - 27°C" },
-            { name: "Platy Rubi", price: "R$ 6,00", img: "PeixesTropicais/PlatyRubi.jpg", info: "Platy com coloração vermelha intensa.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
-            { name: "Platy Aurora", price: "R$ 6,00", img: "PeixesTropicais/PlatyAurora.jpg", info: "Peixe pequeno, colorido e ideal para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 22°C - 26°C" },
-            { name: "Molinésia Prata", price: "R$ 6,00", img: "PeixesTropicais/MolinesiaPrata.jpg", info: "Peixe resistente e ótimo para iniciantes.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" },
-            { name: "Molinésia Tigre", price: "R$ 3,50", img: "PeixesTropicais/MolinesiaTigre.jpg", info: "Variedade de molinésia com padrão rajado.", params: "pH: 7.0 - 8.0 | Temp: 24°C - 28°C" }
-        ],
+        <div id="catalogo-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"></div>
+      </div>
+    </section>
 
-        plantas: [
-            { name: "Anubias Nana", price: "R$ 35,00", img: "Plantas/Anubias.jpg" },
-            { name: "Monte Carlo (Pote)", price: "R$ 25,00", img: "Plantas/MonteCarlo.jpg" },
-            { name: "Musgo de Java", price: "R$ 20,00", img: "Plantas/MusgoJava.jpg" },
-            { name: "Samambaia de Java", price: "R$ 30,00", img: "Plantas/Samambaia.jpg" }
-        ],
+    <!-- ===================== LOCALIZAÇÃO ===================== -->
+    <section id="localizacao" class="py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-5 gap-6 items-stretch">
+          <div class="lg:col-span-2 glass rounded-3xl p-8 flex flex-col justify-center reveal">
+            <span class="section-label mb-3">Onde estamos</span>
+            <h2 class="text-3xl font-bold font-display mb-5">Visite nossa loja</h2>
+            <ul class="space-y-4 text-slate-300">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-sky-400 mt-1"></i><span data-loja-endereco>—</span></li>
+              <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-sky-400"></i><span data-loja-tel>—</span></li>
+            </ul>
+            <div class="flex flex-wrap gap-3 mt-7">
+              <a data-loja-whats href="#" target="_blank" rel="noopener" class="btn-primary !py-2.5 text-sm"><i class="fa-brands fa-whatsapp text-base"></i> WhatsApp</a>
+              <a data-loja-insta href="#" target="_blank" rel="noopener" class="btn-ghost !py-2.5 text-sm"><i class="fa-brands fa-instagram text-base"></i> Instagram</a>
+            </div>
+          </div>
+          <div class="lg:col-span-3 glass rounded-3xl p-3 reveal" data-delay="1">
+            <div class="map-frame h-[360px] lg:h-full rounded-2xl overflow-hidden">
+              <iframe id="mapa" title="Mapa da loja" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        bettas: [
-            { name: "Betta Koi Galaxy", price: "R$ 120,00", img: "Bettas/BettaCandy.jpg" },
-            { name: "Betta Crown Tail", price: "R$ 45,00", img: "Bettas/BettaCrown.jpg" },
-            { name: "Betta Spade Tail", price: "R$ 60,00", img: "Bettas/BettaSpade.jpg" },
-            { name: "Betta Comum", price: "R$ 15,00", img: "Bettas/BettaComum.jpg" }
-        ],
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="border-t border-white/10 mt-10">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2.5 mb-3">
+          <img src="imagens/Logo.png" alt="" class="w-8 h-8 object-contain" />
+          <span class="text-lg font-bold font-display"><span data-loja-nome class="text-gradient">AquaPet</span></span>
+        </div>
+        <p data-loja-slogan class="text-slate-400 text-sm max-w-xs"></p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-sm uppercase tracking-wider text-sky-400">Navegação</h4>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li><a href="#avisos" class="hover:text-sky-400 transition">Mural de avisos</a></li>
+          <li><a href="#calendario" class="hover:text-sky-400 transition">Calendário</a></li>
+          <li><a href="#catalogo" class="hover:text-sky-400 transition">Catálogo</a></li>
+          <li><a href="#localizacao" class="hover:text-sky-400 transition">Localização</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-sm uppercase tracking-wider text-sky-400">Contato</h4>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-1 text-sky-400/70"></i><span data-loja-endereco></span></li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-sky-400/70"></i><span data-loja-tel></span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-sm uppercase tracking-wider text-sky-400">Redes</h4>
+        <div class="flex gap-3">
+          <a data-loja-whats href="#" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-11 h-11 grid place-items-center rounded-xl glass hover:text-teal-300 transition text-lg"><i class="fa-brands fa-whatsapp"></i></a>
+          <a data-loja-insta href="#" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 grid place-items-center rounded-xl glass hover:text-pink-300 transition text-lg"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <p class="max-w-7xl mx-auto px-6 py-5 text-center text-xs text-slate-500">
+        © <span data-ano>2026</span> <span data-loja-nome>AquaPet</span>. Todos os direitos reservados. Feito com 💙 para amantes do aquarismo.
+      </p>
+    </div>
+  </footer>
 
-        invertebrados: [
-            { name: "Camarão Blue Dream", price: "R$ 25,00", img: "https://images.unsplash.com/photo-1544415510-09257e05f0e3?q=80&w=400" },
-            { name: "Caranguejo Vampiro", price: "R$ 89,00", img: "https://images.unsplash.com/photo-1629237255866-2244229419b4?q=80&w=400" }
-        ],
+  <!-- ===================== MODAL DE PRODUTO ===================== -->
+  <div id="modal" class="modal-backdrop">
+    <div class="modal-card glass-strong">
+      <button data-modal-close aria-label="Fechar" class="absolute top-4 right-4 z-10 w-10 h-10 grid place-items-center rounded-xl bg-slate-900/70 backdrop-blur hover:text-sky-400 transition text-lg"><i class="fa-solid fa-xmark"></i></button>
+      <div id="modal-card"></div>
+    </div>
+  </div>
 
-        equipamentos: [
-            { name: "Filtro Canister 1200L/H", price: "R$ 850,00", img: "https://images.unsplash.com/photo-1501446529957-6226bd447c46?q=80&w=400" },
-            { name: "Luminária LED WRGB", price: "R$ 420,00", img: "https://images.unsplash.com/photo-1501446529957-6226bd447c46?q=80&w=400" }
-        ],
-
-        condicionadores: [
-            { name: "Seachem Prime", price: "R$ 95,00", img: "https://images.unsplash.com/photo-1604177091072-b13812745331?q=80&w=400" }
-        ],
-
-        anfibios: [
-            { name: "Axolote Albino", price: "R$ 350,00", img: "https://images.unsplash.com/photo-1511044492877-08993f41249b?q=80&w=400" }
-        ]
-    };
-
-        const categoryTitles = {
-            peixes: "Peixes Tropicais", plantas: "Plantas Aquáticas", bettas: "Bettas de Linhagem",
-            invertebrados: "Invertebrados", equipamentos: "Equipamentos", condicionadores: "Condicionadores", anfibios: "Anfíbios"
-        };
-
-        function showPage(categoryId) {
-            document.querySelectorAll('.category-page').forEach(p => p.classList.remove('active'));
-            if (categoryId === 'home') {
-                document.getElementById('page-home').classList.add('active');
-            } else {
-                const template = document.getElementById('category-template');
-                document.getElementById('category-title').innerText = categoryTitles[categoryId] || "Categoria";
-                const grid = document.getElementById('product-grid');
-                grid.innerHTML = "";
-                
-                (database[categoryId] || []).forEach(prod => {
-                    grid.innerHTML += `
-                        <div class="glass-card p-4 rounded-3xl group">
-                            <div class="relative overflow-hidden rounded-2xl h-56 mb-4">
-                                <img src="${prod.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                            </div>
-                            <h3 class="font-bold text-lg product-name">${prod.name}</h3>
-                            <span class="text-sky-400 font-bold block mt-2">${prod.price}</span>
-                        </div>`;
-                });
-                template.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterProducts() {
-            const input = document.getElementById('productSearch').value.toLowerCase();
-            document.querySelectorAll('#product-grid > div').forEach(card => {
-                const name = card.querySelector('.product-name').innerText.toLowerCase();
-                card.style.display = name.includes(input) ? 'block' : 'none';
-            });
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-        }
-    </script>
+  <!-- Conteúdo (você edita) e motor do site -->
+  <script src="dados.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
